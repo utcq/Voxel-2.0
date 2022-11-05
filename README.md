@@ -14,7 +14,7 @@ You can always check the Lexer output by using the argument `--debug`
 
 ## Parser
 
-Then voxel transform the lexer output to write C++ code,
+Then voxel transform the lexer output to C++ code,
 
 <pre class="language-cpp"><code class="lang-cpp">//C++ Translation of a Simple For Loop in Voxel
 
@@ -38,3 +38,10 @@ int main() {
 
 \
 You can always check the C++ code by using the argument `--save` or `--justcpp`
+
+## Compilation
+
+Once Voxel is converted into C++ the interpreter compiles all with `g++` \
+The exact compilation command is:\
+&#x20;        `g++ -w -I{dirbase}libc/ -Wall -Wextra {output + '.cpp'} -o {output}`
+
