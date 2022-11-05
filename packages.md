@@ -1,5 +1,11 @@
 # 📦 Packages
 
+## Including Libraries
+
+```cpp
+@include "helloworld/helloworld.vx"
+```
+
 ## Libraries Installation
 
 ```bash
