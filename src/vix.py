@@ -26,7 +26,7 @@ COMMANDS:
 """
 
 if len(sys.argv) < 2:
-    print("missing args use --help")
+    print("missing args use help")
     exit()
 
 if sys.argv[1] == "help":
