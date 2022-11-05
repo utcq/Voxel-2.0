@@ -1,0 +1,12 @@
+fun:int add(int x, int y) {
+    return x+y
+}
+
+
+fun:int main() {
+  //__asm__("movl $10, %eax;")
+  for(auto i: range(0, 3)) {
+      puts("Hello!")
+  }
+  return 0
+}
