@@ -1,6 +1,7 @@
 # Table of contents
 
 * [❔ How it works](README.md)
+* [🔻 Installation](installation.md)
 * [🔧 Getting Started](getting-started.md)
 * [⭐ Puts](puts.md)
 * [💼 Variables](variables.md)
