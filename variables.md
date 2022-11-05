@@ -6,7 +6,7 @@
 {% tab title="Strings" %}
 {% code overflow="wrap" lineNumbers="true" %}
 ```cpp
-var:string myString = "str"
+var:string myString => "str"
 ```
 {% endcode %}
 {% endtab %}
@@ -14,11 +14,11 @@ var:string myString = "str"
 {% tab title="Numbers" %}
 {% code overflow="wrap" lineNumbers="true" %}
 ```cpp
-var:int myInt = 22
-var:short myShort = 2
-var:long myLong = 23743431
-var:float myFloat = 32.730f
-var:double myDobuble = 10.50
+var:int myInt => 22
+var:short myShort => 2
+var:long myLong => 23743431
+var:float myFloat => 32.730f
+var:double myDobuble => 10.50
 ```
 {% endcode %}
 {% endtab %}
@@ -26,8 +26,8 @@ var:double myDobuble = 10.50
 {% tab title="Booleans" %}
 {% code overflow="wrap" lineNumbers="true" %}
 ```cpp
-var:bool myBool = true
-var:bool myBool = false
+var:bool myBool => true
+var:bool myBool => false
 ```
 {% endcode %}
 {% endtab %}
@@ -35,16 +35,12 @@ var:bool myBool = false
 {% tab title="Characters" %}
 {% code overflow="wrap" lineNumbers="true" %}
 ```cpp
-var:char myChar = 'D'
+var:char myChar => 'D'
 ```
 {% endcode %}
 {% endtab %}
 
 {% tab title="Arrays" %}
-{% code overflow="wrap" lineNumbers="true" %}
-```cpp
-var:array[int] = {1,2,3}
-```
-{% endcode %}
+<pre class="language-cpp" data-overflow="wrap" data-line-numbers><code class="lang-cpp"><strong>var:int numbers[3] => {1,2,3}</strong></code></pre>
 {% endtab %}
 {% endtabs %}

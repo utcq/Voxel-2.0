@@ -20,7 +20,7 @@ fun:int main() {
 {% code title="main.vx" overflow="wrap" %}
 ```cpp
 fun:int main() {
-    var:string name = "Unity"
+    var:string name => "Unity"
     puts("Hello " << name << "!")
     return 0
 }
