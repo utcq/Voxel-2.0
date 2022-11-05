@@ -60,10 +60,27 @@ class Transform:
 
             elif lex["type"] == "vxinclude":
                 line = lex["line"]
+                if os.path.exists(line[1:][:-1]):
+                    pass
+                else:
+                    print(line[1:][:-1] + " + Not found! Not including...")
+                    break
+                sline = line
                 new = line.split(".")
                 del new[-1]
-                line = '.'.join(new) + '.cpp"'
+                if sline[0] == '"':
+                    char = '"'
+                elif sline[0] == "<":
+                    char = ">"
+                else:
+                    print("@include may fail")
+                    char="'"
+                line = '.'.join(new) + f'.cpp{char}'
                 baseCode += f'#include {line}\n'
+                output = sline[1:][:-1]
+
+                os.system(f"python3 {dirbase}src/interpreter.py {output} --justcpp")
+                
 
             elif lex["type"] == "openbrace":
                 baseCode+="{\n"

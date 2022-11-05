@@ -17,9 +17,24 @@ Args:
     --debug
     --save
     --run
+    --justcpp
 """
 
 
+
+def justcpp(file):
+    code = open(file, "r").read()
+    Lxr = Parser(code) 
+    lexed = Lxr.parse()
+    Trns = Transform(lexed, code)
+    newcode = Trns.toCPP()
+    newfile = file.split(".")[0]
+    new = file.split(".")
+    del new[-1]
+    output = '.'.join(new)
+    newcode = newcode.replace('#include <std.cpp>', '')
+    open(output + ".cpp", "w").write(newcode)
+    
 
 def main():
     global debug
@@ -43,13 +58,16 @@ def main():
         except:
             print("File not found!")
             exit()
+    file = sys.argv[1]
     if "--debug" in sys.argv:
         debug = True
     if "--save" in sys.argv:
         save = True
     if "--run" in sys.argv:
         run = True
-    file = sys.argv[1]
+    if "--justcpp" in sys.argv:
+        justcpp(file)
+        exit()
     if len(sys.argv) >= 4:
         if sys.argv[2] == "-o":
             output = sys.argv[3]
