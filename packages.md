@@ -4,6 +4,7 @@
 
 ```cpp
 @include "helloworld/helloworld.vx"
+@include <helloworld/helloworld.vx>
 ```
 
 ## Libraries Installation
