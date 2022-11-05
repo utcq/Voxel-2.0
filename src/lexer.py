@@ -42,10 +42,12 @@ puts=["puts\(.*?\)"]
 var= [r"(var)\s*?:\s*?(int|bool|char|array|string|short|long|float|double|void)\s*(.*?)=>\s*?[\s\S]*"]
 fun =  [r"fun\s*?:\s*?(int|bool|char|array|string|void|short|long|float|double)\s*([a-z_A-Z.,#-() {} \[\]]+)\s*?\{?"]
 comment = [r"/^\s*[;\//].*?$/m"]
+vxinclude = ["^@include\s(.*?)$"]
 
 
 
-elements = [identifier, 
+elements = [vxinclude,
+            identifier, 
             number, 
             boolean, 
             string, 
@@ -56,7 +58,7 @@ elements = [identifier,
             fun,
             openbrace,
             closedbrace]
-elemname = ["identifier", "number", "boolean", "string", "char", "array", "print_assignment", "var_assignment", "function", "openbrace", "closedbrace"]
+elemname = ["vxinclude", "identifier", "number", "boolean", "string", "char", "array", "print_assignment", "var_assignment", "function", "openbrace", "closedbrace"]
 
 
 

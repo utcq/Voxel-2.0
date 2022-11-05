@@ -15,13 +15,19 @@ Args:
     --help
     -o
     --debug
+    --save
+    --run
 """
 
 
 
 def main():
     global debug
+    global save
+    global run
     debug = False
+    save = False
+    run = False
 
     if len(sys.argv) < 2:
         print("Missing arguments use --help for help")
@@ -39,6 +45,10 @@ def main():
             exit()
     if "--debug" in sys.argv:
         debug = True
+    if "--save" in sys.argv:
+        save = True
+    if "--run" in sys.argv:
+        run = True
     file = sys.argv[1]
     if len(sys.argv) >= 4:
         if sys.argv[2] == "-o":
@@ -56,14 +66,25 @@ def main():
     newcode = Trns.toCPP()
     newfile = file.split(".")[0]
     open(output + ".cpp", "w").write(newcode)
-    print(f"Compiling with g++    [{file}] --> [{output}]")
+    if debug:
+        print(f"Compiling with g++    [{file}] --> [{output}]")
     exitc = os.system(f"g++ -w -I{dirbase}libc/ -Wall -Wextra {output + '.cpp'} -o {output}")
 
     if exitc == 0:
         print(f"Sucess! > {output}")
     else:
         print(f"Failed!")
-    os.remove(output + ".cpp")
+        if save == False:
+            os.remove(output + ".cpp")
+        exit()
+    if save == False:
+        os.remove(output + ".cpp")
+
+    if run:
+        print("\n\n" + "="*25 + "RUN" + "="*25 + "\n")
+        os.system("./" + output)
+        print("\n" + "="*53)
+        os.remove(output)
     
 
 if __name__ == "__main__":

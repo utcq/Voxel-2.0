@@ -5,6 +5,8 @@
 #include <utility>
 
 
+#define vxinclude (file)
+
 #ifndef STDH_H_
 #define STDH_H_
 

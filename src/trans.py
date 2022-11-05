@@ -7,7 +7,7 @@ dirbase = str(Path(dirbase).resolve().parents[0]) + "/"
 stdpath = dirbase + "libc/std.cpp"
 
 global baseCode
-baseCode = f"""
+baseCode = r"""
 #include <string>
 #include <iostream>
 #include <vector>
@@ -58,6 +58,13 @@ class Transform:
                 
                 baseCode+=line
 
+            elif lex["type"] == "vxinclude":
+                line = lex["line"]
+                new = line.split(".")
+                del new[-1]
+                line = '.'.join(new) + '.cpp"'
+                baseCode += f'#include {line}\n'
+
             elif lex["type"] == "openbrace":
                 baseCode+="{\n"
             elif lex["type"] == "closedbrace":
@@ -90,6 +97,8 @@ class Transform:
                                 break
                             elif line.endswith("("):
                                 baseCode+=line+"\n"
+                                break
+                            elif "@include " in line:
                                 break
                             else:
                                 baseCode+=line+";\n"
