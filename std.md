@@ -12,6 +12,10 @@ outvec_str(hw)  // prints {Hello, World}</code></pre>
 ```cpp
 var:int mynum => 32      //  32
 mynum = invert(mynum)    // -32
+
+
+var:int mynum => 32.40F      //  32.40
+mynum = invert(mynum)    // -32.40
 ```
 {% endcode %}
 
