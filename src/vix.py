@@ -110,12 +110,22 @@ name = "{name}"
 version = "{version}"
 authors = {str(authors)}
 description = "{description}"
+mainfile = "main.vx"
 
 
 [dependencies]
 packages = {str(dependencies)}'''
 
+code = """
+fun:int main() {
+    return 0
+}
+"""
+
             open("vix.toml", "w").write(toml.strip())
+            os.mkdir("src")
+            os.mkdir("output")
+            open("src/main.vx", "w").write(code)
 
 
         elif sys.argv[2] == "info":
