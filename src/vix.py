@@ -21,7 +21,8 @@ COMMANDS:
         build,
         run,
         init,
-        setup
+        setup,
+        info
     ]
 """
 
@@ -92,7 +93,48 @@ elif sys.argv[1] == "prj":
                 exit()
             
             pkgs = ' '.join(packages)
-            os.system("python vix install " + pkgs)
+            os.system("vix install " + pkgs)
+
+        elif sys.argv[2] == "init":
+            name =         input("Project name         >  ")
+            version =      input("Version              >  ")
+            authors =      input("Authors              >  ")
+            description =  input("Description          >  ")
+            dependencies = input("Dependencies         >  ").strip()
+            authors = authors.split(" ")
+            dependencies = ["std"] + dependencies.split(" ")
+            dependencies = list(filter(None, dependencies))
+
+            toml = f'''[project]
+name = "{name}"
+version = "{version}"
+authors = {str(authors)}
+description = "{description}"
 
 
+[dependencies]
+packages = {str(dependencies)}'''
 
+            open("vix.toml", "w").write(toml.strip())
+
+
+        elif sys.argv[2] == "info":
+            try:
+                data = toml.load("vix.toml")
+            except:
+                print("No vix.toml file found\n  -> vix prj init")
+                exit()
+
+            name = data["project"]["name"]
+            version = data["project"]["version"]
+            authors = data["project"]["authors"]
+            description = data["project"]["description"]
+            dependencies = data["dependencies"]["packages"]
+
+            print(f"Name:         {name}")
+            print(f"Version:      {version}")
+            print(f"Authors:      {', '.join(authors)}")
+            print(f"Description:  {description}")
+            print(f"Dependencies: ")
+            for dep in dependencies:
+                print("     - " + dep)
