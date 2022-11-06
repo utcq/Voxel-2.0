@@ -116,7 +116,7 @@ mainfile = "main.vx"
 [dependencies]
 packages = {str(dependencies)}'''
 
-code = """
+            code = """
 fun:int main() {
     return 0
 }
