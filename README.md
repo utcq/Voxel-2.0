@@ -98,7 +98,7 @@ vxc --help
 - [x] Assembly
 - [x] Range
 - [x] Split
-- [ ] Package Manager
+- [x] Package Manager
 
 
 
