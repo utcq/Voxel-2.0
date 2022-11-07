@@ -38,15 +38,11 @@ elif sys.argv[1] == "install" and len(sys.argv) >= 3:
     del pkgs[0]
     del pkgs[0]
     for pkg in pkgs:
-        url = f"https://raw.githubusercontent.com/UnityTheCoder/vix/main/%40pkgs/{pkg}/{pkg}.vx"
-        url1 = f"https://raw.githubusercontent.com/UnityTheCoder/vix/main/%40pkgs/{pkg}/{pkg}.cpp"
-        print(url1)
+        url = f"https://raw.githubusercontent.com/UnityTheCoder/vix/main/%40pkgs/{pkg}/package.toml"
         x = os.popen("curl --silent " + url).read()
-        x1 = os.popen("curl --silent " + url1).read()
         if "404" in str(x) or "Not Found" in str(x):
-            if "404" in str(x1) or "Not Found" in str(x1):
-                print("Package not found!")
-                exit()
+            print("Package not found!")
+            exit()
         os.system(f"python3 {dirbase}src/getsubdir.py UnityTheCoder/vix -p @pkgs/{pkg} -r True")
         zz = os.system(f"sudo mkdir /usr/lib/voxel/libc/{pkg}")
         if zz != 0:
