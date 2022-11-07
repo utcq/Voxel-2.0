@@ -3,8 +3,15 @@
 ## Including Libraries
 
 ```cpp
-@include "helloworld/helloworld.vx"
-@include <helloworld/helloworld.vx>
+@include "helloworld"
+@include <helloworld>
+```
+
+## Include Files
+
+```cpp
+@include "file.vx"
+#include "file.cpp"
 ```
 
 ## Libraries Installation
