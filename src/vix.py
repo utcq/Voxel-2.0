@@ -49,7 +49,7 @@ elif sys.argv[1] == "install" and len(sys.argv) >= 3:
             print("[Failed to Install Lib] Possible Causes:\n    Library already Installed, if you want an update, remove and reinstall it")
             os.system("rm -r vix")
             exit()
-        os.system(f"sudo cp -r {dirbase}vix/* /usr/lib/voxel/libc/{pkg}/")
+        os.system(f"sudo cp -r vix/* /usr/lib/voxel/libc/{pkg}/")
         os.system("rm -r vix")
         
 elif sys.argv[1] == "remove" and len(sys.argv) >= 3:
