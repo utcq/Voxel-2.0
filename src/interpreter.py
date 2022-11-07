@@ -2,6 +2,7 @@ from lexer import Parser
 from trans import Transform
 import os, sys
 from pathlib import Path
+import toml
 
 
 dirbase = os.path.dirname(__file__) + "/"
@@ -40,9 +41,15 @@ def main():
     global debug
     global save
     global run
+    global inlibs
+    global args
     debug = False
     save = False
     run = False
+    inlibs = False
+    args = False
+    inslibe = ""
+    args=""
 
     if len(sys.argv) < 2:
         print("Missing arguments use --help for help")
@@ -68,10 +75,16 @@ def main():
     if "--justcpp" in sys.argv:
         justcpp(file)
         exit()
+    if "--inlibs" in sys.argv:
+        inlibs=True
+    if "--args" in sys.argv:
+        args=True
+
     output="a"
     if len(sys.argv) >= 4:
-        if sys.argv[2] == "-o":
-            output = sys.argv[3]
+        if "-o" in sys.argv:
+            pos = sys.argv.index("-o")
+            output = sys.argv[pos+1]
         else:
             output="a"
     else:
@@ -89,7 +102,22 @@ def main():
     open(output + ".cpp", "w").write(newcode)
     if debug:
         print(f"Compiling with g++    [{file}] --> [{output}]")
-    exitc = os.system(f"g++ -w -I{dirbase}libc/ -Wall -Wextra {output + '.cpp'} -o {output}")
+    if inlibs:
+        data = toml.load("vix.toml")
+        inslib = data["dependencies"]["libraries"]
+        inslibe = ""
+        for ins in inslib:
+            inslibe += r"-l" + ins + " "
+    else:
+        inslib = ""
+    if args:
+        data = toml.load("vix.toml")
+        args = data["project"]["args"]
+        args = ' '.join(args)
+    else:
+        args = ""
+
+    exitc = os.system(f"g++ -w -I{dirbase}libc/ -Wall -Wextra {output + '.cpp'} -o {output} {inslibe} {args}")
 
     if exitc == 0:
         print(f"Sucess! > {output}")

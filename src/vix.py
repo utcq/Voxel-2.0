@@ -73,7 +73,7 @@ elif sys.argv[1] == "prj":
                 print('No mainfile variable found in vix.toml\n  -> mainfile="FILE.vx"')
                 exit()
             
-            os.system(f"vxc src/{mainfile} -o output/main")
+            os.system(f"vxc src/{mainfile} -o output/main --inlibs --args")
         elif sys.argv[2] == "run":
             os.system("./output/main")
         
@@ -92,14 +92,20 @@ elif sys.argv[1] == "prj":
             os.system("vix install " + pkgs)
 
         elif sys.argv[2] == "init":
-            name =         input("Project name         >  ")
-            version =      input("Version              >  ")
-            authors =      input("Authors              >  ")
-            description =  input("Description          >  ")
-            dependencies = input("Dependencies         >  ").strip()
+            name =         input("Project name                 >  ")
+            version =      input("Version                      >  ")
+            authors =      input("Authors                      >  ")
+            description =  input("Description                  >  ")
+            dependencies = input("Packages                     >  ").strip()
+            libraries =    input("Builtin Libraries (sqlite3)  >  ").strip()
+            args        =  input("Compiler Arguments           >  ").strip()
             authors = authors.split(" ")
             dependencies = ["std"] + dependencies.split(" ")
             dependencies = list(filter(None, dependencies))
+            libs = libraries.split(" ")
+            libs = list(filter(None, libraries))
+            args = args.split(" ")
+            args = list(filter(None, args))
 
             toml = f'''[project]
 name = "{name}"
@@ -107,10 +113,12 @@ version = "{version}"
 authors = {str(authors)}
 description = "{description}"
 mainfile = "main.vx"
+args = {str(args)}
 
 
 [dependencies]
-packages = {str(dependencies)}'''
+packages = {str(dependencies)}
+libraries = {str(libs)}'''
 
             code = """
 fun:int main() {
@@ -136,6 +144,7 @@ fun:int main() {
             authors = data["project"]["authors"]
             description = data["project"]["description"]
             dependencies = data["dependencies"]["packages"]
+            libraries = data["dependencies"]["libraries"]
 
             print(f"Name:         {name}")
             print(f"Version:      {version}")
@@ -144,3 +153,7 @@ fun:int main() {
             print(f"Dependencies: ")
             for dep in dependencies:
                 print("     - " + dep)
+            print("Libs:          ")
+            for lib in libraries:
+                print("     - " + lib)
+

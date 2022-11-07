@@ -73,8 +73,8 @@ if __name__ == '__main__':
     private = True if options.private else False
 
     if private:
-        USERNAME = raw_input("username: ")
-        PASSWORD = raw_input("password: ")
+        USERNAME = input("username: ")
+        PASSWORD = input("password: ")
 
     write_files(GITHUB_REPOS_API_BASE_URL + path,
                 new_dir_name, recursive=recursive, private=private)
