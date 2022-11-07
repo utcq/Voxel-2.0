@@ -68,9 +68,12 @@ def main():
     if "--justcpp" in sys.argv:
         justcpp(file)
         exit()
+    output="a"
     if len(sys.argv) >= 4:
         if sys.argv[2] == "-o":
             output = sys.argv[3]
+        else:
+            output="a"
     else:
         output="a"
 

@@ -72,12 +72,13 @@ class Transform:
                 if line[1:][:-1].endswith(".vx"):
                     pass
                 else:
-                    if os.path.exists(line[1:][:-1] + dirbase + "libc/" + ):
+                    if os.path.exists(dirbase + "libc/" + line[1:][:-1]):
                         data = toml.load(dirbase + "libc/" + line[1:][:-1] + "/package.toml")
                         package = True
                     else:
-                        print(f"{line[1:][:-1] -> Library not found, Not Including")
+                        print(f"{line[1:][:-1]} -> Library not found, Not Including")
                         found = False
+                print(dirbase + "libc/" + line[1:][:-1])
                 new = line.split(".")
                 del new[-1]
                 if sline[0] == '"':
@@ -88,12 +89,12 @@ class Transform:
                     print("@include may fail")
                     char="'"
                 line = '.'.join(new) + f'.cpp{char}'
-                if found = True:
+                if found == True:
                     if package == False:
                         baseCode += f'#include {line}\n'
                         output = sline[1:][:-1]
                         os.system(f"python3 {dirbase}src/interpreter.py {output} --justcpp")
-                    elif package = True:
+                    elif package == True:
                         for inc in data["pkg"]["include"]:
                             aszf = new = sline.split(".")
                             del new[-1]

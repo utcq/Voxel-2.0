@@ -1,4 +1,4 @@
-@include "Tests/test.vx"
+@include "helloworld"
 fun:int add(int x, int y) {
     return x+y
 }
