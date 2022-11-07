@@ -4,5 +4,6 @@ fun:int add(int x, int y) {
 }
 
 fun:int main(char argv[], int argc) { 
+  greet()
   return add(2,3) 
 }

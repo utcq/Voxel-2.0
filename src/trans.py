@@ -66,7 +66,7 @@ class Transform:
                 if os.path.exists(line[1:][:-1]):
                     pass
                 else:
-                    print(line[1:][:-1] + " + Not found! Not including...")
+                    print(line[1:][:-1] + " Not found! Not including...")
                     found = False
                 sline = line
                 if line[1:][:-1].endswith(".vx"):
@@ -75,10 +75,10 @@ class Transform:
                     if os.path.exists(dirbase + "libc/" + line[1:][:-1]):
                         data = toml.load(dirbase + "libc/" + line[1:][:-1] + "/package.toml")
                         package = True
+                        found=True
                     else:
                         print(f"{line[1:][:-1]} -> Library not found, Not Including")
                         found = False
-                print(dirbase + "libc/" + line[1:][:-1])
                 new = line.split(".")
                 del new[-1]
                 if sline[0] == '"':
@@ -96,13 +96,25 @@ class Transform:
                         os.system(f"python3 {dirbase}src/interpreter.py {output} --justcpp")
                     elif package == True:
                         for inc in data["pkg"]["include"]:
-                            aszf = new = sline.split(".")
-                            del new[-1]
-                            xline = '.'.join(new) + "/"
+                            xline=dirbase + "libc/" + sline[1:][:-1]
                             if inc.endswith(".vx"):
-                                baseCode+=f'@include "{dirbase + "libc/" + xline + inc}"'
+                                linz=f'"{xline + "/" + inc}"'
+                                sline=linz
+                                new = linz.split(".")
+                                del new[-1]
+                                if sline[0] == '"':
+                                    char = '"'
+                                elif sline[0] == "<":
+                                    char = ">"
+                                else:
+                                    print("@include may fail")
+                                    char="'"
+                                line = '.'.join(new) + f'.cpp{char}'
+                                baseCode += f'#include {line}\n'
+                                output = sline[1:][:-1]
+                                os.system(f"python3 {dirbase}src/interpreter.py {output} --justcpp")
                             else:
-                                baseCode+=f'#include "{dirbase + "libc/" + xline + inc}"'
+                                baseCode+=f'#include "{xline + "/" + inc}"\n'
                 
 
             elif lex["type"] == "openbrace":
