@@ -9,3 +9,4 @@
 * [⚜ STD](std.md)
 * [💡 Other](other.md)
 * [📦 Packages](packages.md)
+* [⚙ TOML Config](toml-config.md)
