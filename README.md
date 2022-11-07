@@ -75,6 +75,7 @@ sudo ln -s /usr/lib/voxel/voxel /usr/bin/vxc
 sudo chmod +x /usr/bin/vxc
 sudo ln -s /usr/lib/voxel/vix /usr/bin/vix
 sudo chmod +x /usr/bin/vix
+sudo chown -R $(whoami) /usr/lib/voxel/
 ```
 
 
