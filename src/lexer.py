@@ -78,27 +78,55 @@ class Parser:
                 for item in element:
                     token=elemname[dd]
                     if token == "var_assignment":
+                        if line.strip().startswith("//"):
+                            break
                         matches = re.finditer(item, line)
 
                         for matchNum, match in enumerate(matches, start=1):
                             mat= match.group()
                             #print(token + ":  " + str(mat))
+                            varname = mat.split(":")
+                            del varname[0]
+                            varname=':'.join(varname)
+                            varname = varname.split(" ")[1].split("=>")[0].strip()
+
+                            vartype = mat.split(":")
+                            del vartype[0]
+                            vartype = ':'.join(vartype)
+                            vartype = vartype.split(" ")[0].strip()
+
+                            value = mat.split(":")
+                            del value[0]
+                            value=':'.join(value)
+                            value = value.split("=>")[1].strip()
+
                             data = {
                                 "type": token,
-                                "varname": mat.split(":")[1].split(" ")[1].split("=>")[0].strip(),
-                                "vartype": mat.split(":")[1].split(" ")[0].strip(),
-                                "value": mat.split(":")[1].split("=>")[1].strip()
+                                "varname":  varname,
+                                "vartype":  vartype,
+                                "value":  value
                             }
                             #print(str(data) + "  =  " + str(mat))
                             lexed.append(data)
                             notfound=False
                     
                     elif token == "print_assignment":
+                        fail = False
+                        if line.strip().startswith("//"):
+                            data = {
+                                "type": "comment",
+                                "line": line,
+                            }
+                            lexed.append(data)
+                            fail=True
+                        if fail:
+                            break
+                            
                         x= re.finditer(item, line)
                         for matchNum, match in enumerate(x, start=1):
                             iz = match.group()
                             break
-                        reg = "^\([^)]*\)$"
+                        reg = "\([^)]*\)"
                         try:
                             data = {
                                 "type": token,
@@ -113,6 +141,16 @@ class Parser:
 
                     
                     elif token == "function":
+                        fail = False
+                        if line.strip().startswith("//"):
+                            data = {
+                                "type": "comment",
+                                "line": line,
+                            }
+                            lexed.append(data)
+                            fail=True
+                        if fail:
+                            break
                         x= re.finditer(item, line, re.MULTILINE)
                         for matchNum, match in enumerate(x, start=1):
                             iz = match.group()

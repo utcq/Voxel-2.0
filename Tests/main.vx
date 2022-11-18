@@ -4,8 +4,10 @@ fun:int add(int x, int y) {
 }
 
 fun:int main(char argv[], int argc) { 
-  var:string ggs=>"Hello World!"
-  var:string newg=>replace(ggs, "orl", "") 
-  greet()
+  var:string from => "aeiou"
+  var:string to => "12345"
+  const auto translate = maketrans(from, to)
+  var:string str => "hello Mike!";
+  std::cout << translate(str) << std::endl;
   return add(2,3) 
 }

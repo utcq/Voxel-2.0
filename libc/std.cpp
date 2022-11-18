@@ -5,7 +5,9 @@
 #include <iterator>
 #include <utility>
 #include <regex>
-
+#include <algorithm>
+#include <functional>
+#include <unordered_map>
 
 template <typename T> T invert(T number) {
   return number * (-1);
@@ -19,7 +21,7 @@ void splittovec(std::string str, std::string splitby, std::vector<std::string>& 
     std::string frag;
     while(true)
     {
-        frag = tokens.back();
+frag = tokens.back();
         splitAt = frag.find(splitby);
         if(splitAt == std::string::npos)
         {
@@ -161,3 +163,51 @@ std::string replace(std::string str, std::string f,std::string r) {
   return std::regex_replace(str, std::regex(f), r);
 }
 
+
+std::string operator*(const std::string& s, size_t n) {
+    std::string result;
+    result.reserve(s.size()*n);
+    for(size_t i = 0; i < n; ++i) {
+        result += s;
+    }
+    return result;
+}
+
+std::string capitalize(std::string str) {
+  str[0] = toupper(str[0]);
+  std::transform(str.begin()+1, str.end(), str.begin()+1, tolower);
+  return str;
+}
+
+bool endswith(std::string const &fullString, std::string const &ending) {
+    if (fullString.length() >= ending.length()) {
+        return (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));
+    } else {
+        return false;
+    }
+}
+
+
+std::function<std::string(std::string)>
+maketrans(const std::string& from, const std::string& to) {
+    std::unordered_map<char, char> map;
+    for (std::string::size_type i = 0;
+         i != std::min(from.size(), to.size()); ++i) {
+        map[from[i]] = to[i];
+    }
+    return [=](std::string s) {
+        for (auto& c : s) {
+            const auto mapped_c = map.find(c);
+            if (mapped_c != map.end()) {
+                c = mapped_c->second;
+            }
+        }
+        return s;
+    };
+}
+
+
+std::string reverse(std::string str) {
+  std::reverse(begin(str), end(str));
+  return str;
+}

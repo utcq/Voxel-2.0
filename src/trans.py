@@ -115,6 +115,9 @@ class Transform:
                                 os.system(f"python3 {dirbase}src/interpreter.py {output} --justcpp")
                             else:
                                 baseCode+=f'#include "{xline + "/" + inc}"\n'
+
+            elif lex["type"] == "comment":
+                baseCode+=f"{lex['line'].strip()}\n"
                 
 
             elif lex["type"] == "openbrace":
