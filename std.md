@@ -37,6 +37,47 @@ puts(newg)           // =+=+=+=+=+
 ```
 {% endcode %}
 
+## Capitalize
+
+{% code overflow="wrap" lineNumbers="true" %}
+```cpp
+var:string gte => "hello"
+var:string ggz => capitalize(gte)
+puts(ggz)         //  Hello
+```
+{% endcode %}
+
+## Endswith
+
+{% code overflow="wrap" lineNumbers="true" %}
+```cpp
+var:string gte => "hello"
+var:boolean gtt = endswith(gte, "o")
+```
+{% endcode %}
+
+## Maketrans
+
+{% code overflow="wrap" lineNumbers="true" %}
+```cpp
+var:string from => "aeiou"
+var:string to => "12345"
+const auto translate = maketrans(from, to)
+var:string str => "hello Mike!";
+std::cout << translate(str) << std::endl;    //  h2ll4 M3k2!
+```
+{% endcode %}
+
+## Reverse
+
+{% code overflow="wrap" lineNumbers="true" %}
+```cpp
+var:string nm => "aeiou"
+var:string rv => reverse(nm)
+puts(rv)       //  uoiea
+```
+{% endcode %}
+
 ## Outvec
 
 {% tabs %}

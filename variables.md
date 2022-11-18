@@ -26,8 +26,8 @@ var:double myDobuble => 10.50
 {% tab title="Booleans" %}
 {% code overflow="wrap" lineNumbers="true" %}
 ```cpp
-var:bool myBool => true
-var:bool myBool => false
+var:boolean myBool => true
+var:boolean myBool => false
 ```
 {% endcode %}
 {% endtab %}
