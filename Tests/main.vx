@@ -4,6 +4,8 @@ fun:int add(int x, int y) {
 }
 
 fun:int main(char argv[], int argc) { 
+  var:string ggs=>"Hello World!"
+  var:string newg=>replace(ggs, "orl", "") 
   greet()
   return add(2,3) 
 }

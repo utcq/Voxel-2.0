@@ -4,6 +4,7 @@
 #include <stdh.h>
 #include <iterator>
 #include <utility>
+#include <regex>
 
 
 template <typename T> T invert(T number) {
@@ -153,4 +154,10 @@ inline Range<T> range(T&& first, T&& last) noexcept {
     return Range<T>(std::move(first), std::move(last));
 }
 
+
+
+
+std::string replace(std::string str, std::string f,std::string r) {
+  return std::regex_replace(str, std::regex(f), r);
+}
 

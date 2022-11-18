@@ -118,6 +118,7 @@ def main():
         args = ""
 
     exitc = os.system(f"g++ -w -I{dirbase}libc/ -Wall -Wextra {output + '.cpp'} -o {output} {inslibe} {args}")
+    #print(f"g++ -w -I{dirbase}libc/ -Wall -Wextra {output + '.cpp'} -o {output} {inslibe} {args}")
 
     if exitc == 0:
         print(f"Sucess! > {output}")

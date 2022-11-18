@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <iterator>
 #include <utility>
-
+#include <regex>
 
 #define vxinclude (file)
 
@@ -18,5 +18,6 @@ void outvec_int(std::vector <int> const &a);
 void outvec_str(std::vector <std::string> const &a);
 void outvec_char(std::vector <char> const &a);
 void outvec_bool(std::vector <bool> const &a);
+std::string replace(std::string str, std::string f, std::string r);
 #endif 
 

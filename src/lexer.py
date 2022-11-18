@@ -39,7 +39,7 @@ closedbrace = ["^}"]
 # BUILTIN
 value = [string, identifier, number, boolean, char, array]
 puts=["puts\(.*?\)"]
-var= [r"(var)\s*?:\s*?(int|bool|char|array|string|short|long|float|double|void)\s*?(.*?)=>\s*?[\s\S]*"]
+var= [r"(var)\s*?:\s*?(int|bool|char|array|string|short|long|float|double|void)\s*?(.*?)\s*?=>\s*?[\s\S]*"]
 fun =  [r"fun\s*?:\s*?(int|bool|char|array|string|void|short|long|float|double)\s*([a-z_A-Z.,#-() {} \[\]]+)\s*?\{?"]
 comment = [r"/^\s*[;\//].*?$/m"]
 vxinclude = ["^@include\s(.*?)$"]
@@ -85,7 +85,7 @@ class Parser:
                             #print(token + ":  " + str(mat))
                             data = {
                                 "type": token,
-                                "varname": mat.split(":")[1].split(" ")[1].strip(),
+                                "varname": mat.split(":")[1].split(" ")[1].split("=>")[0].strip(),
                                 "vartype": mat.split(":")[1].split(" ")[0].strip(),
                                 "value": mat.split(":")[1].split("=>")[1].strip()
                             }
