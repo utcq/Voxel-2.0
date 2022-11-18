@@ -28,6 +28,15 @@ var:string newg=>replace(ggs, "orl", "")  // Hello Wd!
 ```
 {% endcode %}
 
+## String Multiplication
+
+{% code overflow="wrap" lineNumbers="true" %}
+```cpp
+var:string newg => (std::string("=+") * 5)
+puts(newg)           // =+=+=+=+=+
+```
+{% endcode %}
+
 ## Outvec
 
 {% tabs %}
