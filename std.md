@@ -19,6 +19,15 @@ mynum = invert(mynum)    // -32.40
 ```
 {% endcode %}
 
+## Replace
+
+{% code overflow="wrap" lineNumbers="true" %}
+```cpp
+var:string ggs=>"Hello World!"
+var:string newg=>replace(ggs, "orl", "")  // Hello Wd!
+```
+{% endcode %}
+
 ## Outvec
 
 {% tabs %}
