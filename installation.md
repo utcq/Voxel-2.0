@@ -1,8 +1,8 @@
 # 🔻 Installation
 
 `sh -c $(curl -L https://raw.githubusercontent.com/UnityTheCoder/Voxel-2.0/main/assets/install.sh)`\
-``**OR**\
-****
+**OR**\
+
 
 ```bash
 sh -c "sudo rm -r /usr/lib/voxel"

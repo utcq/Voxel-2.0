@@ -4,7 +4,8 @@
 
 <pre class="language-cpp" data-overflow="wrap" data-line-numbers><code class="lang-cpp"><strong>var:string greet => "Hello World"
 </strong>std::vector&#x3C;std::string> hw = split(greet, " ")
-outvec_str(hw)  // prints {Hello, World}</code></pre>
+outvec_str(hw)  // prints {Hello, World}
+</code></pre>
 
 ## Invert
 
@@ -52,7 +53,7 @@ puts(ggz)         //  Hello
 {% code overflow="wrap" lineNumbers="true" %}
 ```cpp
 var:string gte => "hello"
-var:boolean gtt = endswith(gte, "o")
+var:boolean gtt = endswith(gte, "o") // true
 ```
 {% endcode %}
 

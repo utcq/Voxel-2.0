@@ -2,7 +2,7 @@
 
 ## Print statement
 
-> `puts()` have default end of line
+> `puts()` has default end of line
 
 {% code title="main.vx" overflow="wrap" %}
 ```cpp
